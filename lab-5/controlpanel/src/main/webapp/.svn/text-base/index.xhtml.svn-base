@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>JDG LibraryMode Demo</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:dataTable var="entry" value="#{controlPanelBean.allStatus}"
+			style="text-align: center;">
+			<h:column>
+				<f:facet name="header">Server Name</f:facet>
+				#{entry.key}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Status</f:facet>
+				<h:commandLink action="#{controlPanelBean.toggleStatus(entry.key)}">
+					<f:ajax render="@form" />
+					<h:graphicImage url="images/on.png" width="30%" height="30%"
+						rendered="#{entry.value}" />
+					<h:graphicImage url="images/off.png" width="30%" height="30%"
+						rendered="#{not entry.value}" />
+				</h:commandLink>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>
